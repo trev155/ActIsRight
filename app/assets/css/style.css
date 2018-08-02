@@ -37,7 +37,7 @@ body {
     margin: 10px 0 0 0;
     border: 10px solid orange;
     padding: 5px;
-    height: 600px;
+    height: 800px;
 }
 
 /* --- DICE GAME --- */
@@ -45,13 +45,30 @@ body {
     height: 100%;
 }
 
-.NumberDisplayBoard {
+.DiceGame .left {
+    height: 100%;
+    width: 70%;
+    float: left;
+}
+
+.DiceGame .right {
+    height: 100%;
+    width: 29%;
+    float: right;
+}
+
+.DiceGame .NumberDisplayBoard {
     margin: 0 0 5px 0;
     border: 1px solid black;
     height: 49%;
 }
 
-.DiceBoard {
+.DiceGame .DiceBoard {
     border: 1px solid black;
     height: 49%;
+}
+
+.DiceGame .InfoPanel {
+    border: 1px solid black;
+    height: 99%;
 }

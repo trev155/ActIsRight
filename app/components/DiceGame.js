@@ -1,6 +1,7 @@
 import React from 'react';
 import { NumberDisplayBoard } from './NumberDisplayBoard';
 import { DiceBoard } from './DiceBoard';
+import { InfoPanel } from './InfoPanel';
 
 export class DiceGame extends React.Component {
     constructor(props) {
@@ -13,8 +14,13 @@ export class DiceGame extends React.Component {
     render() {
         return (
             <div className="DiceGame">
-                <NumberDisplayBoard/>
-                <DiceBoard/>
+                <div className="left">
+                    <NumberDisplayBoard/>
+                    <DiceBoard/>
+                </div>
+                <div className="right">
+                    <InfoPanel/>
+                </div>
             </div>
         );
     }
