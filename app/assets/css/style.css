@@ -1,3 +1,57 @@
+/* --- BODY --- */
 body {
-    color: blue;
+    margin: 0;
+    background-color: rgba(255, 153, 51, 0.7);
+}
+
+/* --- HEADER --- */
+/* Sticky Header */
+.Header {
+    border: 1px solid black;
+    background-color: rgb(250, 120, 83);
+    text-align: center;
+}
+
+.Header h1 {
+    margin: 0;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.sticky + .MainContent {
+    padding-top: 40px;
+}
+
+/* --- GAME SECTION --- */
+.GameSelection {
+    margin: 10px 0 0 0;
+    padding: 15px;
+    height: 100px;
+}
+
+.GameSection {
+    margin: 10px 0 0 0;
+    border: 10px solid orange;
+    padding: 5px;
+    height: 600px;
+}
+
+/* --- DICE GAME --- */
+.DiceGame {
+    height: 100%;
+}
+
+.NumberDisplayBoard {
+    margin: 0 0 5px 0;
+    border: 1px solid black;
+    height: 49%;
+}
+
+.DiceBoard {
+    border: 1px solid black;
+    height: 49%;
 }

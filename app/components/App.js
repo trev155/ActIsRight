@@ -1,8 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Header } from './Header';
+import { MainContent } from './MainContent';
 
 export class App extends React.Component {
 	render() {
-		return <h1>HELLO WORLD</h1>;
+		return (
+		    <div className="App">
+		        <Header/>
+                <MainContent/>
+		    </div>
+		);
 	}
 }

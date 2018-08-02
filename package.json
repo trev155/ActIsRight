@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/trev155/ActIsRight#readme",
   "dependencies": {
+    "jquery": "^3.3.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1"
   },
