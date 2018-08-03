@@ -15,6 +15,9 @@ export class DiceGame extends React.Component {
         return (
             <div className="DiceGame">
                 <div className="left">
+                    <div className="banner">
+                        <img src="/app/assets/img/dicegame.png" height="95%" width="100%"/>
+                    </div>
                     <NumberDisplayBoard/>
                     <DiceBoard/>
                 </div>
