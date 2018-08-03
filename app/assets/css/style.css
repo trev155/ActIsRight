@@ -41,6 +41,7 @@ body {
 }
 
 /* --- DICE GAME --- */
+/* Main Containers */
 .DiceGame {
     height: 100%;
 }
@@ -77,11 +78,11 @@ body {
     height: 99%;
 }
 
+/* Number Display Board */
 .DiceGame .NumberDisplayBoard .col {
-    width: 19.5%;
-    height: 99%;
+    width: 20%;
+    height: 100%;
     float: left;
-    border: 1px solid black;
 }
 
 .DiceGame .NumberDisplayBoard .col .NumberPanel {
@@ -89,25 +90,34 @@ body {
 }
 
 .DiceGame .NumberDisplayBoard .col .NumberPanel img {
-    width: 98%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 90%;
     height: 100%;
-    display: block;
-    text-align: center;
-}
-
-.DiceGame .NumberDisplayBoard .col .DicePanel {
-    height: 8%;
-}
-
-.DiceGame .NumberDisplayBoard .col .DicePanel img {
-    margin: 0 auto;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    width: 50%;
-    height: 90%;
-    display: block;
 }
 
 .DiceGame .NumberDisplayBoard .col1 .NumberPanel {
-    padding-top: 50%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.DiceGame .NumberDisplayBoard .col .DicePanel {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+    height: 18%;
+    width: 50%;
+}
+
+.DiceGame .NumberDisplayBoard .col .DicePanel img {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 100%;
+    height: 80%;
 }
