@@ -4,7 +4,12 @@ export class DiceBoard extends React.Component {
     render() {
         return (
             <div className="DiceBoard">
-                Dice Board
+                <div className="idleDice">
+                    Idle Dice
+                </div>
+                <div className="diceResult">
+                    Dice Result
+                </div>
             </div>
         );
     }
