@@ -15,18 +15,18 @@ export class InfoPanel extends React.Component {
                 </div>
                 <div className="buttonSet1">
                     <div className="startButton">
-                        <button>Start Game</button>
+                        <button onClick={this.props.handlers.startGameHandler}>Start Game</button>
                     </div>
                     <div className="rollButton">
-                        <button>ROLL</button>
+                        <button onClick={this.props.handlers.rollHandler}>ROLL</button>
                     </div>
                 </div>
                 <div className="buttonSet2">
                     <div className="lowerButton">
-                        <button>Lower</button>
+                        <button onClick={this.props.handlers.lowerHandler}>Lower</button>
                     </div>
                     <div className="higherButton">
-                        <button>Higher</button>
+                        <button onClick={this.props.handlers.higherHandler}>Higher</button>
                     </div>
                 </div>
                 <div className="product">
