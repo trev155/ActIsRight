@@ -37,7 +37,7 @@ body {
     border: 10px solid orange;
     padding: 5px;
     height: 800px;
-    background-color: rgba(133, 255, 209, 0.9);     /* Default Background Color */
+    background-color: rgba(10, 55, 19, 0.3);     /* Default Background Color */
 }
 
 /* --- DICE GAME --- */
@@ -45,7 +45,6 @@ body {
 .DiceGame {
     width: 100%;
     height: 100%;
-    background-color: rgb(235, 161, 96);
 }
 
 .DiceGame .left {
@@ -72,16 +71,20 @@ body {
 
 .DiceGame .DiceBoard {
     width: 100%;
-    height: 39%;
+    height: 40%;
 }
 
 .DiceGame .InfoPanel {
     width: 99%;
     height: 99%;
-    border: 1px solid black;
+    background-color: rgb(204, 166, 51);
 }
 
 /* Number Display Board */
+.DiceGame .NumberDisplayBoard .col {
+    background-color: rgb(204, 128, 51);
+}
+
 .DiceGame .NumberDisplayBoard .col {
     width: 20%;
     height: 100%;
@@ -128,28 +131,25 @@ body {
 
 /* Dice Board */
 .DiceGame .DiceBoard {
-    background-color: green;
+    background-color: rgb(51, 204, 128);
 }
 
 .DiceGame .DiceBoard .idleDice {
     width: 30%;
     height: 100%;
     float: left;
-    border: 1px solid black;
 }
 
 .DiceGame .DiceBoard .diceResult {
     width: 30%;
     height: 100%;
     float: right;
-    border: 1px solid black;
 }
 
 /* Info Panel */
 .DiceGame .InfoPanel .instructions {
-    height: 40%;
-    padding: 1%;
-    border: 1px solid black;
+    height: 30%;
+    padding: 5%;
 }
 
 .DiceGame .InfoPanel .instructions h2 {
@@ -158,16 +158,36 @@ body {
 
 .DiceGame .InfoPanel .buttonSet1 {
     height: 10%;
-    border: 1px solid black;
 }
 
 .DiceGame .InfoPanel .buttonSet1 .startButton {
+    width: 50%;
+    height: 100%;
+    float: left;
     text-align: center;
+}
+
+.DiceGame .InfoPanel .buttonSet1 .startButton button {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.DiceGame .InfoPanel .buttonSet1 .rollButton {
+    width: 50%;
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+
+.DiceGame .InfoPanel .buttonSet1 .rollButton button {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .DiceGame .InfoPanel .buttonSet2 {
     height: 10%;
-    border: 1px solid black;
 }
 
 .DiceGame .InfoPanel .buttonSet2 .lowerButton {
@@ -177,6 +197,12 @@ body {
     text-align: center;
 }
 
+.DiceGame .InfoPanel .buttonSet2 .lowerButton button {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 .DiceGame .InfoPanel .buttonSet2 .higherButton {
     width: 50%;
     height: 100%;
@@ -184,17 +210,23 @@ body {
     text-align: center;
 }
 
+.DiceGame .InfoPanel .buttonSet2 .higherButton button {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 .DiceGame .InfoPanel .product {
-    height: 30%;
-    border: 1px solid black;
+    height: 50%;
 }
 
 .DiceGame .InfoPanel .product h2 {
     margin: 0 auto;
     text-align: center;
+    height: 30%;
 }
 
 .DiceGame .InfoPanel .product img {
     width: 100%;
-    height: 100%;
+    height: 60%;
 }

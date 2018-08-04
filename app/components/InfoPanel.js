@@ -17,6 +17,9 @@ export class InfoPanel extends React.Component {
                     <div className="startButton">
                         <button>Start Game</button>
                     </div>
+                    <div className="rollButton">
+                        <button>ROLL</button>
+                    </div>
                 </div>
                 <div className="buttonSet2">
                     <div className="lowerButton">
@@ -27,7 +30,7 @@ export class InfoPanel extends React.Component {
                     </div>
                 </div>
                 <div className="product">
-                    <h2>Product Placeholder Product Name</h2>
+                    <h2>Product Placeholder Product Name A Car Another Car</h2>
                     <img src="/app/assets/img/placeholder.png"/>
                 </div>
             </div>
