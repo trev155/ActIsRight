@@ -9,6 +9,10 @@ export class NumberPanel extends React.Component {
     3. Filled - a number if displayed
 
     This can be retrieved from the "this.props.panelMode" value, which is passed a number in {1, 2, 3}.
+
+    Props:
+    - number: the number to be displayed in this panel. value should be ignored if panelMode == 1 or panelMode == 2
+    - panelMode: what kind of panel to display.
     */
     render() {
         const imgBase = "/app/assets/img/dicegame/";

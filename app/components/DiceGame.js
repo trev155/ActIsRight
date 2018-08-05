@@ -6,10 +6,26 @@ import { InfoPanel } from './InfoPanel';
 class GameEngine {
     /*
     Constructor for the GameEngine, which represents the game's current state.
-    The GameEngine starts with no data.
+    The GameEngine starts with empty data fields.
+
+    Field Descriptions:
+    - allProducts: array of product data, one will be selected when the game starts.
+    - product: represents the current product of this game. It's cost must be a 5 digit number, each digit in {1 to 6}
+    - rolls: array of at most 4 integers in {1 to 6}. Represents the dice rolls the user has rolled so far
+    - guesses: array of at most 4 integers in {-1, 0, 1}. Represents the user guesses so far. 1 = higher, -1 = lower, 0 = match
+    - isGameStarted: boolean, indicates if the game has started
+    - isRollPhase: boolean, indicates if the game should prompt the user for a roll
+    - isGuessPhase: boolean, indicates if the game should prompt the user for a guess
+    - isRevealPhase: boolean, indicates if all rolls / guesses are complete
     */
     constructor() {
-        // cost should always be a 5-digit number
+        // Prices based on the following sites: thecarconnection.com
+        this.allProducts = [
+            {name: "2016 Acura ILX", cost: "21252", imgPath: "/app/assets/img/dicegame/2016_acura_ilx.jpg"},
+            {name: "2009 Audi Q7 Prestige", cost: "16432", imgPath: "/app/assets/img/dicegame/2009_audi_q7_prestige.jpg"},
+            {name: "2017 Hyundai Elantra SE", cost: "13644", imgPath: "/app/assets/img/dicegame/2017_hyundai_elantra_se.jpg"}
+        ];
+
         this.product = {
             name: null,
             cost: null,
@@ -25,13 +41,6 @@ class GameEngine {
         this.isRollPhase = false;
         this.isGuessPhase = false;
         this.isRevealPhase = false;
-
-        // Prices based on the following sites: thecarconnection.com,
-        this.allProducts = [
-            {name: "2016 Acura ILX", cost: "21252", imgPath: "/app/assets/img/dicegame/2016_acura_ilx.jpg"},
-            {name: "2009 Audi Q7 Prestige", cost: "16432", imgPath: "/app/assets/img/dicegame/2009_audi_q7_prestige.jpg"},
-            {name: "2017 Hyundai Elantra SE", cost: "13644", imgPath: "/app/assets/img/dicegame/2017_hyundai_elantra_se.jpg"}
-        ];
     }
 
     /*
@@ -49,7 +58,9 @@ class GameEngine {
         return this;
     }
 
-    /* End the current game. */
+    /*
+    End the current game.
+    */
     endGame() {
         this.product = {name: null, cost: null, imgPath: null};
         this.rolls = [];

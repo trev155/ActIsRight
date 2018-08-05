@@ -16,3 +16,4 @@ After cloning, do `npm install`, then `./runserver.sh`.
 - if game has started and roll phase, render roll button only
 - if game has started and guess phase, render lower and higher buttons
 
+- end game function
