@@ -31,10 +31,7 @@ class GameEngine {
             cost: null,
             imgPath: null
         };
-        // array of at most 4 values (integers, range 1-6) representing user rolls
         this.rolls = []
-        // array of at most 4 values representing whether the user guessed higher or lower, where:
-        // 1 = higher, -1 = lower, 0 = match
         this.guesses = []
 
         this.isGameStarted = false;
@@ -171,6 +168,8 @@ export class DiceGame extends React.Component {
 
     render() {
         console.log(this.state.game);
+
+        // intended to be passed into the NumberDisplayBoard
         let gameData = {
             rolls: this.state.game.rolls,
             guesses: this.state.game.guesses,
@@ -178,11 +177,19 @@ export class DiceGame extends React.Component {
             hasStarted: this.state.game.isGameStarted
         };
 
+        // intended to be passed into the InfoPanel
         let handlers = {
             startGameHandler: this.handleStartGameClick,
             rollHandler: this.handleRollClick,
             lowerHandler: this.handleLowerClick,
             higherHandler: this.handleHigherClick
+        };
+        // intended to be passed into the InfoPanel
+        let lifecycle = {
+            isStarted: this.state.game.isGameStarted,
+            isRollPhase: this.state.game.isRollPhase,
+            isGuessPhase: this.state.game.isGuessPhase,
+            isRevealPhase: this.state.game.isRevealPhase
         };
 
         return (
@@ -195,7 +202,7 @@ export class DiceGame extends React.Component {
                     <DiceBoard/>
                 </div>
                 <div className="right">
-                    <InfoPanel handlers={handlers} shouldRenderProduct={this.state.game.isGameStarted} product={this.state.game.product}/>
+                    <InfoPanel handlers={handlers} product={this.state.game.product} lifecycle={lifecycle}/>
                 </div>
             </div>
         );
