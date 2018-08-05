@@ -1,6 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export class InfoPanel extends React.Component {
+    /*
+    The InfoPanel contains instructions and the main gameplay buttons.
+    */
     render() {
         let productName;
         let productPath;
@@ -47,3 +51,18 @@ export class InfoPanel extends React.Component {
         );
     }
 }
+
+InfoPanel.propTypes = {
+    handlers: PropTypes.shape({
+        startGameHandler: PropTypes.func.isRequired,
+        rollHandler: PropTypes.func.isRequired,
+        lowerHandler: PropTypes.func.isRequired,
+        higherHandler: PropTypes.func.isRequired
+    }).isRequired,
+    shouldRenderProduct: PropTypes.bool.isRequired,
+    product: PropTypes.shape({
+        name: PropTypes.string,
+        cost: PropTypes.string,
+        imgPath: PropTypes.string
+    })
+};
