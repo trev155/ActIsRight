@@ -31,7 +31,7 @@ export class InfoPanel extends React.Component {
                 </div>
                 <div className="product">
                     <h2>Product Placeholder Product Name A Car Another Car</h2>
-                    <img src="/app/assets/img/placeholder.png"/>
+                    <img src="/app/assets/img/dicegame/placeholder.png"/>
                 </div>
             </div>
         );

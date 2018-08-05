@@ -158,6 +158,12 @@ export class DiceGame extends React.Component {
 
     render() {
         console.log(this.state.game);
+        let gameData = {
+            rolls: this.state.game.rolls,
+            guesses: this.state.game.guesses,
+            cost: this.state.game.product.cost
+        };
+
         let handlers = {
             startGameHandler: this.handleStartGameClick,
             rollHandler: this.handleRollClick,
@@ -171,7 +177,7 @@ export class DiceGame extends React.Component {
                     <div className="banner">
                         <img src="/app/assets/img/dicegame/dicegame.png" height="95%" width="100%"/>
                     </div>
-                    <NumberDisplayBoard/>
+                    <NumberDisplayBoard gameData={gameData}/>
                     <DiceBoard/>
                 </div>
                 <div className="right">
