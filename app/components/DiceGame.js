@@ -18,7 +18,7 @@ class GameEngine {
         // array of at most 4 values (integers, range 1-6) representing user rolls
         this.rolls = []
         // array of at most 4 values representing whether the user guessed higher or lower, where:
-        // true = higher, false = lower, null = dice match
+        // 1 = higher, -1 = lower, 0 = match
         this.guesses = []
 
         this.isGameStarted = false;
@@ -76,15 +76,15 @@ class GameEngine {
 
         const index = this.rolls.length;
         if (currentRoll === parseInt(this.product.cost[index])) {
-            this.guesses.push(null);
+            this.guesses.push(0);
             return this;
         }
 
         // if the roll was a 1 or 6, then we auto-set the guess and skip the guess phase
         if (currentRoll === 1) {
-            this.guesses.push(true);
+            this.guesses.push(1);
         } else if (currentRoll === 6) {
-            this.guesses.push(false);
+            this.guesses.push(-1);
         } else {
             this.isRollPhase = false;
             this.isGuessPhase = true;
@@ -146,7 +146,7 @@ export class DiceGame extends React.Component {
         console.log("lower");
 
         this.setState({
-            game: this.state.game.guess(false)
+            game: this.state.game.guess(-1)
         });
     }
 
@@ -154,7 +154,7 @@ export class DiceGame extends React.Component {
         console.log("higher");
 
         this.setState({
-            game: this.state.game.guess(true)
+            game: this.state.game.guess(1)
         });
     }
 
@@ -163,7 +163,8 @@ export class DiceGame extends React.Component {
         let gameData = {
             rolls: this.state.game.rolls,
             guesses: this.state.game.guesses,
-            cost: this.state.game.product.cost
+            cost: this.state.game.product.cost,
+            hasStarted: this.state.game.isGameStarted
         };
 
         let handlers = {
