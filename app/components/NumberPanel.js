@@ -9,7 +9,7 @@ export class NumberPanel extends React.Component {
         if (number) {
             imgPath = imgBase + "number_" + number + ".png";
         } else {
-            imgPath = imgBase + "placeholder.png";
+            imgPath = imgBase + "empty_number_panel.png";
         }
 
         return (

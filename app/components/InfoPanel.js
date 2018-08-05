@@ -2,6 +2,16 @@ import React from 'react';
 
 export class InfoPanel extends React.Component {
     render() {
+        let productName;
+        let productPath;
+        if (this.props.shouldRenderProduct) {
+            productName = this.props.product.name;
+            productPath = this.props.product.imgPath;
+        } else {
+            productName = "";
+            productPath = "/app/assets/img/dicegame/placeholder.png";
+        }
+
         return (
             <div className="InfoPanel">
                 <div className="instructions">
@@ -30,8 +40,8 @@ export class InfoPanel extends React.Component {
                     </div>
                 </div>
                 <div className="product">
-                    <h2>Product Placeholder Product Name A Car Another Car</h2>
-                    <img src="/app/assets/img/dicegame/placeholder.png"/>
+                    <h2>{productName}</h2>
+                    <img src={productPath}/>
                 </div>
             </div>
         );

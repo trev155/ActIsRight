@@ -6,7 +6,11 @@ export class NumberDisplayBoard extends React.Component {
     render() {
         let rolls = this.props.gameData.rolls;
         let cost = this.props.gameData.cost;
+
+        // for debug
+        console.log("debug");
         console.log(cost);
+        console.log(rolls);
 
         let firstDigit;
         if (cost) {
@@ -22,22 +26,22 @@ export class NumberDisplayBoard extends React.Component {
                 </div>
                 <div className="col col2">
                     <NumberPanel/>
-                    <DicePanel/>
+                    <DicePanel number={rolls[0]}/>
                     <NumberPanel/>
                 </div>
                 <div className="col col3">
                     <NumberPanel/>
-                    <DicePanel/>
+                    <DicePanel number={rolls[1]}/>
                     <NumberPanel/>
                 </div>
                 <div className="col col4">
                     <NumberPanel/>
-                    <DicePanel/>
+                    <DicePanel number={rolls[2]}/>
                     <NumberPanel/>
                 </div>
                 <div className="col col5">
                     <NumberPanel/>
-                    <DicePanel/>
+                    <DicePanel number={rolls[3]}/>
                     <NumberPanel/>
                 </div>
             </div>

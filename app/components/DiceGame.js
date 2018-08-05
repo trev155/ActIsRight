@@ -69,6 +69,8 @@ class GameEngine {
     roll() {
         let currentRoll = Math.floor((Math.random() * 6) + 1);
         this.rolls.push(currentRoll);
+
+        // for debug
         console.log(currentRoll)
         console.log(this.product.cost[this.rolls.length]);
 
@@ -181,7 +183,7 @@ export class DiceGame extends React.Component {
                     <DiceBoard/>
                 </div>
                 <div className="right">
-                    <InfoPanel handlers={handlers}/>
+                    <InfoPanel handlers={handlers} shouldRenderProduct={this.state.game.isGameStarted} product={this.state.game.product}/>
                 </div>
             </div>
         );
