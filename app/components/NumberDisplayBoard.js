@@ -118,15 +118,47 @@ export class NumberDisplayBoard extends React.Component {
             } else if (this.props.gameData.guesses[3] === 0) {
                 fifthDigitHigher = parseInt(this.props.gameData.cost[4]);
                 fifthDigitLower = parseInt(this.props.gameData.cost[4]);
-                fifthDigitHigherIsFilled = false;
+                fifthDigitHigherIsFilled = true;
                 fifthDigitHigherIsSelected = true;
-                fifthDigitLowerIsFilled = false;
+                fifthDigitLowerIsFilled = true;
                 fifthDigitLowerIsSelected = true;
             }
         }
 
-        // have a separate set of values for if the game has finished - gameData.isRevealPhase is true
-        // TODO
+        // If we're in the reveal phase, override some of the above.
+        if (this.props.lifecycle.isRevealPhase) {
+            if (this.props.gameData.rolls[0] < parseInt(this.props.gameData.cost[1])) {
+                secondDigitHigher = parseInt(this.props.gameData.cost[1]);
+                secondDigitHigherIsFilled = true;
+            } else if (this.props.gameData.rolls[0] > parseInt(this.props.gameData.cost[1])) {
+                secondDigitLower = parseInt(this.props.gameData.cost[1]);
+                secondDigitLowerIsFilled = true;
+            }
+
+            if (this.props.gameData.rolls[1] < parseInt(this.props.gameData.cost[2])) {
+                thirdDigitHigher = parseInt(this.props.gameData.cost[2]);
+                thirdDigitHigherIsFilled = true;
+            } else if (this.props.gameData.rolls[1] > parseInt(this.props.gameData.cost[2])) {
+                thirdDigitLower = parseInt(this.props.gameData.cost[2]);
+                thirdDigitLowerIsFilled = true;
+            }
+
+            if (this.props.gameData.rolls[2] < parseInt(this.props.gameData.cost[3])) {
+                fourthDigitHigher = parseInt(this.props.gameData.cost[3]);
+                fourthDigitHigherIsFilled = true;
+            } else if (this.props.gameData.rolls[2] > parseInt(this.props.gameData.cost[3])) {
+                fourthDigitLower = parseInt(this.props.gameData.cost[3]);
+                fourthDigitLowerIsFilled = true;
+            }
+
+            if (this.props.gameData.rolls[3] < parseInt(this.props.gameData.cost[4])) {
+                fifthDigitHigher = parseInt(this.props.gameData.cost[4]);
+                fifthDigitHigherIsFilled = true;
+            } else if (this.props.gameData.rolls[3] > parseInt(this.props.gameData.cost[4])) {
+                fifthDigitLower = parseInt(this.props.gameData.cost[4]);
+                fifthDigitLowerIsFilled = true;
+            }
+        }
 
         return (
             <div className="NumberDisplayBoard">
@@ -168,6 +200,7 @@ NumberDisplayBoard.propTypes = {
         isStarted: PropTypes.bool,
         isRollPhase: PropTypes.bool,
         isGuessPhase: PropTypes.bool,
+        isDone: PropTypes.bool,
         isRevealPhase: PropTypes.bool
     }).isRequired
 };

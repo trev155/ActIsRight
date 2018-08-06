@@ -16,6 +16,7 @@ class GameEngine {
     - isGameStarted: boolean, indicates if the game has started
     - isRollPhase: boolean, indicates if the game should prompt the user for a roll
     - isGuessPhase: boolean, indicates if the game should prompt the user for a guess
+    - isDone: boolean, indicates if the game is "done", the interim between the last guess and the reveal phase
     - isRevealPhase: boolean, indicates if all rolls / guesses are complete
     */
     constructor() {
@@ -37,6 +38,7 @@ class GameEngine {
         this.isGameStarted = false;
         this.isRollPhase = false;
         this.isGuessPhase = false;
+        this.isDone = false;
         this.isRevealPhase = false;
     }
 
@@ -51,6 +53,7 @@ class GameEngine {
         this.isGameStarted = true;
         this.isRollPhase = true;
         this.isGuessPhase = false;
+        this.isDone = false;
         this.isRevealPhase = false;
         return this;
     }
@@ -73,7 +76,7 @@ class GameEngine {
             this.guesses.push(0);
             if (this.guesses.length === 4) {
                 this.isRollPhase = false;
-                this.isRevealPhase = true;
+                this.isDone = true;
             }
             return this;
         }
@@ -87,7 +90,9 @@ class GameEngine {
             }
             // check the case where this was the last guess
             if (this.guesses.length === 4) {
-                this.isRevealPhase = true;
+                this.isDone = true;
+            } else {
+                this.isRollPhase = true;
             }
         } else {
             this.isGuessPhase = true;
@@ -107,7 +112,8 @@ class GameEngine {
         // indicates that this was the last guess
         if (this.guesses.length === 4) {
             this.isGuessPhase = false;
-            this.isRevealPhase = true;
+            this.isRollPhase = false;
+            this.isDone = true;
         } else {
             this.isRollPhase = true;
             this.isGuessPhase = false;
@@ -119,6 +125,7 @@ class GameEngine {
     What should be done here actually?
     */
     reveal() {
+        this.isRevealPhase = true;
         return this;
     }
 }
@@ -217,6 +224,7 @@ export class DiceGame extends React.Component {
             isStarted: this.state.game.isGameStarted,
             isRollPhase: this.state.game.isRollPhase,
             isGuessPhase: this.state.game.isGuessPhase,
+            isDone: this.state.game.isDone,
             isRevealPhase: this.state.game.isRevealPhase
         };
 
