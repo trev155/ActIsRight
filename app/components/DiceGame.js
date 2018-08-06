@@ -56,20 +56,6 @@ class GameEngine {
     }
 
     /*
-    End the current game.
-    */
-    endGame() {
-        this.product = {name: null, cost: null, imgPath: null};
-        this.rolls = [];
-        this.guesses = [];
-        this.isGameStarted = false;
-        this.isRollPhase = false;
-        this.isGuessPhase = false;
-        this.isRevealPhase = false;
-        return this;
-    }
-
-    /*
     Generate the next roll value.
     If the value matches the next digit of the product, move on to the next digit.
     Otherwise, move into the guess phase.
@@ -85,17 +71,27 @@ class GameEngine {
         const index = this.rolls.length;
         if (currentRoll === parseInt(this.product.cost[index])) {
             this.guesses.push(0);
+            if (this.guesses.length === 4) {
+                this.isRollPhase = false;
+                this.isRevealPhase = true;
+            }
             return this;
         }
 
-        // if the roll was a 1 or 6, then we auto-set the guess and skip the guess phase
-        if (currentRoll === 1) {
-            this.guesses.push(1);
-        } else if (currentRoll === 6) {
-            this.guesses.push(-1);
+        // if the roll was a 1 or 6, then we take care of the guess phase automatically
+        if (currentRoll === 1 || currentRoll === 6) {
+            if (currentRoll === 1) {
+                this.guesses.push(1);
+            } else if (currentRoll === 6) {
+                this.guesses.push(-1);
+            }
+            // check the case where this was the last guess
+            if (this.guesses.length === 4) {
+                this.isRevealPhase = true;
+            }
         } else {
-            this.isRollPhase = false;
             this.isGuessPhase = true;
+            this.isRollPhase = false;
         }
 
         return this;
@@ -109,7 +105,7 @@ class GameEngine {
         this.guesses.push(val);
 
         // indicates that this was the last guess
-        if (this.rolls.length === 4) {
+        if (this.guesses.length === 4) {
             this.isGuessPhase = false;
             this.isRevealPhase = true;
         } else {
@@ -118,8 +114,22 @@ class GameEngine {
         }
         return this;
     }
+
+    /*
+    What should be done here actually?
+    */
+    reveal() {
+        return this;
+    }
 }
 
+
+/*
+This class is the primary entry point for the entire "DiceGame".
+It is a stateful component, so it sends out event handlers and data to other components, which in turn
+update this parent component. The DiceGame component is the top-level component. It maintains the
+state of the game.
+*/
 export class DiceGame extends React.Component {
     constructor(props) {
         super(props);
@@ -132,6 +142,7 @@ export class DiceGame extends React.Component {
         this.handleRollClick = this.handleRollClick.bind(this);
         this.handleLowerClick = this.handleLowerClick.bind(this);
         this.handleHigherClick = this.handleHigherClick.bind(this);
+        this.handleRevealClick = this.handleRevealClick.bind(this);
     }
 
     handleStartGameClick() {
@@ -166,25 +177,42 @@ export class DiceGame extends React.Component {
         });
     }
 
+    handleRevealClick() {
+        console.log("reveal");
+
+        this.setState({
+            game: this.state.game.reveal()
+        });
+    }
+
+    /*
+    Render the DiceGame.
+
+    The DiceGame consists of 3 major panels:
+    1. NumberDisplayBoard - where the numbers appear
+    2. DiceBoard - where the dice appear (mostly for visual aesthethics)
+    3. InfoPanel - where instructions and game controls appear
+    */
     render() {
         console.log(this.state.game);
 
-        // intended to be passed into the NumberDisplayBoard
+        // Game information that the NumberDisplayBoard uses to determine what to display
         let gameData = {
             rolls: this.state.game.rolls,
             guesses: this.state.game.guesses,
             cost: this.state.game.product.cost,
-            hasStarted: this.state.game.isGameStarted
         };
 
-        // intended to be passed into the InfoPanel
+        // Button click handlers meant to be passed into the InfoPanel
         let handlers = {
             startGameHandler: this.handleStartGameClick,
             rollHandler: this.handleRollClick,
             lowerHandler: this.handleLowerClick,
-            higherHandler: this.handleHigherClick
+            higherHandler: this.handleHigherClick,
+            revealHandler: this.handleRevealClick
         };
-        // intended to be passed into the InfoPanel
+
+        // Game lifecycle information that can be used to determine what to render
         let lifecycle = {
             isStarted: this.state.game.isGameStarted,
             isRollPhase: this.state.game.isRollPhase,
@@ -198,7 +226,7 @@ export class DiceGame extends React.Component {
                     <div className="banner">
                         <img src="/app/assets/img/dicegame/dicegame.png" height="95%" width="100%"/>
                     </div>
-                    <NumberDisplayBoard gameData={gameData}/>
+                    <NumberDisplayBoard gameData={gameData} lifecycle={lifecycle}/>
                     <DiceBoard/>
                 </div>
                 <div className="right">

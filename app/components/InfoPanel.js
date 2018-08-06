@@ -26,47 +26,61 @@ export class InfoPanel extends React.Component {
         }
 
         let buttonSet1;
-        if (this.props.lifecycle.isGuessPhase) {
+        if (this.props.lifecycle.isRevealPhase) {
             buttonSet1 = (
-            <div className="buttonSet1">
-                <div className="startButton">
-                    <button onClick={this.props.handlers.startGameHandler}>{btnText}</button>
+                <div className="buttonSet1">
+                    <div className="revealButton">
+                        <button onClick={this.props.handlers.revealHandler}>Find out if you win!</button>
+                    </div>
                 </div>
-                <div className="rollButton"></div>
-            </div>
             );
         } else {
-            buttonSet1 = (
-            <div className="buttonSet1">
-                <div className="startButton">
-                    <button onClick={this.props.handlers.startGameHandler}>{btnText}</button>
+            if (this.props.lifecycle.isGuessPhase) {
+                buttonSet1 = (
+                <div className="buttonSet1">
+                    <div className="startButton">
+                        <button onClick={this.props.handlers.startGameHandler}>{btnText}</button>
+                    </div>
+                    <div className="rollButton"></div>
                 </div>
-                <div className="rollButton">
-                    <button onClick={this.props.handlers.rollHandler}>ROLL</button>
+                );
+            } else {
+                buttonSet1 = (
+                <div className="buttonSet1">
+                    <div className="startButton">
+                        <button onClick={this.props.handlers.startGameHandler}>{btnText}</button>
+                    </div>
+                    <div className="rollButton">
+                        <button onClick={this.props.handlers.rollHandler}>ROLL</button>
+                    </div>
                 </div>
-            </div>
-            );
+                );
+            }
         }
 
         let buttonSet2;
-        if (this.props.lifecycle.isRollPhase) {
-            buttonSet2 = (
-            <div className="buttonSet2">
-                <div className="lowerButton"></div>
-                <div className="higherButton"></div>
-            </div>
-            );
+        if (this.props.lifecycle.isRevealPhase) {
+            buttonSet2 = <div className="buttonSet2"></div>;
         } else {
-            buttonSet2 = (
-            <div className="buttonSet2">
-                <div className="lowerButton">
-                    <button onClick={this.props.handlers.lowerHandler}>Lower</button>
+            if (this.props.lifecycle.isRollPhase) {
+                buttonSet2 = (
+                <div className="buttonSet2">
+                    <div className="lowerButton"></div>
+                    <div className="higherButton"></div>
                 </div>
-                <div className="higherButton">
-                    <button onClick={this.props.handlers.higherHandler}>Higher</button>
+                );
+            } else {
+                buttonSet2 = (
+                <div className="buttonSet2">
+                    <div className="lowerButton">
+                        <button onClick={this.props.handlers.lowerHandler}>Lower</button>
+                    </div>
+                    <div className="higherButton">
+                        <button onClick={this.props.handlers.higherHandler}>Higher</button>
+                    </div>
                 </div>
-            </div>
-            );
+                );
+            }
         }
 
         // Perform the actual rendering
@@ -99,17 +113,18 @@ InfoPanel.propTypes = {
         startGameHandler: PropTypes.func.isRequired,
         rollHandler: PropTypes.func.isRequired,
         lowerHandler: PropTypes.func.isRequired,
-        higherHandler: PropTypes.func.isRequired
+        higherHandler: PropTypes.func.isRequired,
+        revealHandler: PropTypes.func.isRequired
     }).isRequired,
     product: PropTypes.shape({
         name: PropTypes.string,
         cost: PropTypes.string,
         imgPath: PropTypes.string
-    }),
+    }).isRequired,
     lifecycle: PropTypes.shape({
         isStarted: PropTypes.bool,
         isRollPhase: PropTypes.bool,
         isGuessPhase: PropTypes.bool,
         isRevealPhase: PropTypes.bool
-    })
+    }).isRequired
 };

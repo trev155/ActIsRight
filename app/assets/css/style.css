@@ -3,6 +3,15 @@ body {
     margin: 0;
 }
 
+.App {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 /* --- HEADER --- */
 /* Sticky Header */
 .Header {
@@ -96,19 +105,33 @@ body {
     height: 40%;
 }
 
-.DiceGame .NumberDisplayBoard .col .NumberPanel img {
+.DiceGame .NumberDisplayBoard .col1 .NumberPanel {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.DiceGame .NumberDisplayBoard .col .NumberPanel .frame {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
 
     width: 90%;
     height: 100%;
+
+    background-color: black;
 }
 
-.DiceGame .NumberDisplayBoard .col1 .NumberPanel {
+.DiceGame .NumberDisplayBoard .col .NumberPanel .frame.selected {
+    border: 3px solid yellow;
+}
+
+.DiceGame .NumberDisplayBoard .col .NumberPanel img {
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translateX(-50%);
+
+    height: 100%;
 }
 
 .DiceGame .NumberDisplayBoard .col .DicePanel {
@@ -183,6 +206,18 @@ body {
 .DiceGame .InfoPanel .buttonSet1 .rollButton button {
     position: relative;
     top: 50%;
+    transform: translateY(-50%);
+}
+
+.DiceGame .InfoPanel .buttonSet1 .revealButton {
+    width: 50%;
+    height: 100%;
+}
+
+.DiceGame .InfoPanel .buttonSet1 .revealButton button {
+    position: relative;
+    top: 50%;
+    left: 50%;
     transform: translateY(-50%);
 }
 

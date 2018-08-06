@@ -3,35 +3,48 @@ import PropTypes from 'prop-types';
 
 export class NumberPanel extends React.Component {
     /*
-    A NumberPanel can be one of 3 modes:
-    1. Empty - no number is displayed
-    2. Empty / Lit - no number is displayed, but a guess has been made
-    3. Filled - a number if displayed
-
-    This can be retrieved from the "this.props.panelMode" value, which is passed a number in {1, 2, 3}.
+    A NumberPanel can be one of 4 modes:
+    1. Empty, not Selected - no number is displayed
+    2. Empty, Selected - no number is displayed, but a guess has been made and the panel has been outlined
+    3. Filled, not Selected - a number is displayed, but the panel is not outlined
+    4. Filled, Selected - a number is displayed, and the panel has been selected
 
     Props:
-    - number: the number to be displayed in this panel. value should be ignored if panelMode == 1 or panelMode == 2
-    - panelMode: what kind of panel to display.
+    - number: the number to be displayed in this panel
+    - isFilled: whether the number should actually be displayed
+    - isSelected: whether the panel should have a visual outline
     */
     render() {
         const imgBase = "/app/assets/img/dicegame/";
+        let imgPath = imgBase + "number_" + this.props.number + ".png";
 
-        let number = this.props.number;
-        let panelMode = this.props.panelMode;
-
-        let imgPath;
-        if (panelMode === 1) {
-            imgPath = imgBase + "empty_number_panel.png";
-        } else if (panelMode === 2) {
-            imgPath = imgBase + "lit_number_panel.png";
-        } else {
-            imgPath = imgBase + "number_" + number + ".png";
+        // Choose what the internals of the NumberPanel will look like
+        let frame;
+        if (!this.props.isFilled && !this.props.isSelected) {
+            frame = <div className="frame"></div>;
+        }
+        if (!this.props.isFilled && this.props.isSelected) {
+            frame = <div className="frame selected"></div>;
+        }
+        if (this.props.isFilled && !this.props.isSelected) {
+            frame = (
+            <div className="frame">
+                <img src={imgPath}/>
+            </div>
+            );
+        }
+        if (this.props.isFilled && this.props.isSelected) {
+            frame = (
+            <div className="frame selected">
+                <img src={imgPath}/>
+            </div>
+            );
         }
 
+        // Actual Rendering of the NumberPanel
         return (
             <div className="NumberPanel">
-                <img src={imgPath}/>
+                {frame}
             </div>
         );
     }

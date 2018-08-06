@@ -5,7 +5,7 @@ export class DicePanel extends React.Component {
     /*
     A DicePanel can be one of 2 things:
     1. Empty
-    2. A number
+    2. A dice number
 
     For the first case, this.props.number will be undefined or null.
     For the second case, we should display the appropriate image.
