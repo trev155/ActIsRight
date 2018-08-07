@@ -18,6 +18,7 @@ class GameEngine {
     - isGuessPhase: boolean, indicates if the game should prompt the user for a guess
     - isDone: boolean, indicates if the game is "done", the interim between the last guess and the reveal phase
     - isRevealPhase: boolean, indicates if all rolls / guesses are complete
+    - isGameWon: boolean, indicates if the user won the game
     */
     constructor() {
         // Prices based on the following sites: thecarconnection.com
@@ -40,6 +41,7 @@ class GameEngine {
         this.isGuessPhase = false;
         this.isDone = false;
         this.isRevealPhase = false;
+        this.isGameWon = false;
     }
 
     /*
@@ -55,6 +57,7 @@ class GameEngine {
         this.isGuessPhase = false;
         this.isDone = false;
         this.isRevealPhase = false;
+        this.isGameWon = false;
         return this;
     }
 
@@ -122,10 +125,29 @@ class GameEngine {
     }
 
     /*
-    What should be done here actually?
+    Reveal the actual retail price of the product.
+    This is done on the visual side by setting isRevealPhase = true, and passing this state to the other components.
+
+    This function should also determine if the user won or lost the game. Indicate this with the isGameWon field.
     */
     reveal() {
         this.isRevealPhase = true;
+
+        // Determine if game won
+        let incorrectGuess = false;
+        for (let i = 0; i < this.rolls.length; i++) {
+            if (this.guesses[i] === 0) {
+                continue;
+            } else if (this.guesses[i] === 1 && this.rolls[i] < parseInt(this.product.cost[i + 1])) {
+                continue;
+            } else if (this.guesses[i] === -1 && this.rolls[i] > parseInt(this.product.cost[i + 1])) {
+                continue;
+            } else {
+                incorrectGuess = true;
+                break;
+            }
+        }
+        this.isGameWon = !incorrectGuess;
         return this;
     }
 }
