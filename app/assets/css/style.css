@@ -238,6 +238,15 @@ body {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+
+    width: 80%;
+    height: 50%;
+
+    background-color: rgba(64, 224, 145, 0.7);
+    border-radius: 20px;
+    font-size: 14px;
+    color: rgb(50, 10, 212);
+    font-weight: bold;
 }
 
 .DiceGame .InfoPanel .buttonSet1 .rollButton {
@@ -251,6 +260,15 @@ body {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+
+    width: 80%;
+    height: 50%;
+
+    background-color: rgba(97, 255, 52, 0.7);
+    border-radius: 20px;
+    font-size: 14px;
+    color: rgb(50, 10, 212);
+    font-weight: bold;
 }
 
 .DiceGame .InfoPanel .buttonSet1 .revealButton {
@@ -263,6 +281,15 @@ body {
     top: 50%;
     left: 50%;
     transform: translateY(-50%);
+
+    width: 80%;
+    height: 50%;
+
+    background-color: rgba(97, 255, 52, 0.7);
+    border-radius: 20px;
+    font-size: 14px;
+    color: rgb(50, 10, 212);
+    font-weight: bold;
 }
 
 .DiceGame .InfoPanel .buttonSet2 {
@@ -280,6 +307,15 @@ body {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+
+    width: 80%;
+    height: 50%;
+
+    background-color: rgba(130, 145, 152, 0.7);
+    border-radius: 20px;
+    font-size: 14px;
+    color: rgb(240, 220, 192);
+    font-weight: bold;
 }
 
 .DiceGame .InfoPanel .buttonSet2 .higherButton {
@@ -293,6 +329,15 @@ body {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+
+    width: 80%;
+    height: 50%;
+
+    background-color: rgba(197, 35, 22, 0.7);
+    border-radius: 20px;
+    font-size: 14px;
+    color: rgb(20, 220, 192);
+    font-weight: bold;
 }
 
 .DiceGame .InfoPanel .product {
