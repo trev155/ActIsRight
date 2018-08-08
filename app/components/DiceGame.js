@@ -269,7 +269,7 @@ export class DiceGame extends React.Component {
                         <img src="/app/assets/img/dicegame/dicegame.png"/>
                     </div>
                     <NumberDisplayBoard gameData={gameData} lifecycle={lifecycle}/>
-                    <DiceBoard idleDice={idleDice} lifecycle={lifecycle}/>
+                    <DiceBoard idleDice={idleDice} rolls={this.state.game.rolls} lifecycle={lifecycle}/>
                 </div>
                 <div className="right">
                     <InfoPanel handlers={handlers} product={this.state.game.product} lifecycle={lifecycle}/>
