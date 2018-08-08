@@ -7,9 +7,8 @@ After cloning, do `npm install`, then `./runserver.sh`.
 ## Notes
 
 ## TODO
-- sound effects
 - add more products
-
+- better audio files
 - logic refactoring (especially in NumberDisplayBoard, also in InfoPanel)
 - refactor components into folders for each individual game
 - refactor css into smaller files?

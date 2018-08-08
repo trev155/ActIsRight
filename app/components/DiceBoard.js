@@ -13,7 +13,6 @@ export class DiceBoard extends React.Component {
             gameOverText = "";
         }
 
-        console.log(this.props.rolls);
         let rollResult;
         if (this.props.lifecycle.isStarted && this.props.rolls.length > 0 && !this.props.lifecycle.isRevealPhase) {
             rollResult = "You rolled a: " + this.props.rolls[this.props.rolls.length - 1];

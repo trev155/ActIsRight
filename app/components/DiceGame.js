@@ -74,12 +74,11 @@ class GameEngine {
     Otherwise, move into the guess phase.
     */
     roll() {
+        // Play sound effect
+        new Audio("/app/assets/audio/diceroll.mp3").play();
+
         let currentRoll = Math.floor((Math.random() * 6) + 1);
         this.rolls.push(currentRoll);
-
-        // for debug
-        console.log(currentRoll)
-        console.log(this.product.cost[this.rolls.length]);
 
         const index = this.rolls.length;
         if (currentRoll === parseInt(this.product.cost[index])) {
@@ -114,9 +113,12 @@ class GameEngine {
 
     /*
     Generate the next guess value.
-    Takes in one parameter, which is true or false (true = "higher").
+    Takes in one parameter, which is the user guess (0, 1, or -1 for match, higher, lower).
     */
     guess(val) {
+        // Play sound effect
+        new Audio("/app/assets/audio/ding.mp3").play();
+
         this.guesses.push(val);
 
         // indicates that this was the last guess
@@ -128,6 +130,7 @@ class GameEngine {
             this.isRollPhase = true;
             this.isGuessPhase = false;
         }
+
         return this;
     }
 
@@ -155,6 +158,14 @@ class GameEngine {
             }
         }
         this.isGameWon = !incorrectGuess;
+
+        // Play music on victory or loss
+        if (this.isGameWon) {
+            new Audio("/app/assets/audio/priceisright_victory.mp3").play();
+        } else {
+            new Audio("/app/assets/audio/priceisright_losehorn.mp3").play();
+        }
+
         return this;
     }
 }
