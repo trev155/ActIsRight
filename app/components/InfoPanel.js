@@ -146,10 +146,11 @@ export class InfoPanel extends React.Component {
                 <div className="instructions">
                     <h2>Instructions</h2>
                     <p>
-                    In Dice Game, you have to guess the price of a car. You will be shown the first digit of the
-                    car. Then, you will roll a die. If the value of the die matches the next digit of the car,
+                    In Dice Game, you have to guess the price of a car.
+                    First, you will be shown the first digit of the car.
+                    Then, you will roll a die. If the value of the die matches the next digit of the car,
                     then you move on to the next digit. Otherwise, you have to guess whether the digit is higher
-                    or lower than the value on the die.
+                    or lower than the value on the die. If you roll a 1 or a 6, the guess will be made for you.
                     </p>
                 </div>
 
@@ -183,6 +184,7 @@ InfoPanel.propTypes = {
         isRollPhase: PropTypes.bool,
         isGuessPhase: PropTypes.bool,
         isDone: PropTypes.bool,
-        isRevealPhase: PropTypes.bool
+        isRevealPhase: PropTypes.bool,
+        isGameWon: PropTypes.bool
     }).isRequired
 };

@@ -254,7 +254,8 @@ export class DiceGame extends React.Component {
             isRollPhase: this.state.game.isRollPhase,
             isGuessPhase: this.state.game.isGuessPhase,
             isDone: this.state.game.isDone,
-            isRevealPhase: this.state.game.isRevealPhase
+            isRevealPhase: this.state.game.isRevealPhase,
+            isGameWon: this.state.game.isGameWon
         };
 
         // The Idle Dice faces to display
@@ -268,7 +269,7 @@ export class DiceGame extends React.Component {
                         <img src="/app/assets/img/dicegame/dicegame.png"/>
                     </div>
                     <NumberDisplayBoard gameData={gameData} lifecycle={lifecycle}/>
-                    <DiceBoard idleDice={idleDice}/>
+                    <DiceBoard idleDice={idleDice} lifecycle={lifecycle}/>
                 </div>
                 <div className="right">
                     <InfoPanel handlers={handlers} product={this.state.game.product} lifecycle={lifecycle}/>

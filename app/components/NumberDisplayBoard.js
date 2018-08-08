@@ -201,6 +201,7 @@ NumberDisplayBoard.propTypes = {
         isRollPhase: PropTypes.bool,
         isGuessPhase: PropTypes.bool,
         isDone: PropTypes.bool,
-        isRevealPhase: PropTypes.bool
+        isRevealPhase: PropTypes.bool,
+        isGameWon: PropTypes.bool
     }).isRequired
 };

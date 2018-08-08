@@ -96,7 +96,7 @@ body {
 
 /* Number Display Board */
 .DiceGame .NumberDisplayBoard .col {
-    background-color: rgb(204, 128, 51);
+    background-color: rgb(200, 173, 0);
 }
 
 .DiceGame .NumberDisplayBoard .col {
@@ -128,7 +128,7 @@ body {
 }
 
 .DiceGame .NumberDisplayBoard .col .NumberPanel .frame.selected {
-    border: 3px solid yellow;
+    border: 3px solid rgb(127,255,212);
 }
 
 .DiceGame .NumberDisplayBoard .col .NumberPanel img {
@@ -136,7 +136,8 @@ body {
     left: 50%;
     transform: translateX(-50%);
 
-    height: 100%;
+    height: 99%;
+    width: 99%;
 }
 
 .DiceGame .NumberDisplayBoard .col .DicePanel {
@@ -159,14 +160,13 @@ body {
 
 /* Dice Board */
 .DiceGame .DiceBoard {
-    background-color: rgb(51, 204, 128);
+    background-color: rgb(10, 129, 22);
 }
 
 .DiceGame .DiceBoard .idleDice {
     width: 30%;
     height: 100%;
     float: left;
-    border: 1px solid black;
 }
 
 .DiceGame .DiceBoard .idleDice .idleDiceContainer {
@@ -176,36 +176,55 @@ body {
 }
 
 .DiceGame .DiceBoard .idleDice .idleDiceContainer div img {
-    max-width: 25%;
-    max-height: 25%;
+    width: 20%;
+    height: 20%;
 }
 
 .DiceGame .DiceBoard .middleField {
     width: 38%;
     height: 100%;
     float: left;
-    border: 1px solid black;
+}
+
+.DiceGame .DiceBoard .middleField .gameOverText {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+
+    text-align: center;
+    height: 50%;
+    font-size: 24px;
+    color: rgb(233, 205, 12);
 }
 
 .DiceGame .DiceBoard .diceResult {
     width: 30%;
     height: 100%;
     float: left;
-    border: 1px solid black;
+    border-left: 5px solid white;
 }
 
 /* Info Panel */
 .DiceGame .InfoPanel .instructions {
     height: 30%;
     padding: 5%;
+
+    font-family: Verdana;
+    font-size: 14px;
+    overflow: auto;
 }
 
 .DiceGame .InfoPanel .instructions h2 {
     text-align: center;
+    margin: 0;
+}
+
+.DiceGame .InfoPanel .instructions p {
+    margin: 0;
 }
 
 .DiceGame .InfoPanel .buttonSet1 {
-    height: 10%;
+    height: 15%;
 }
 
 .DiceGame .InfoPanel .buttonSet1 .startButton {
@@ -247,7 +266,7 @@ body {
 }
 
 .DiceGame .InfoPanel .buttonSet2 {
-    height: 10%;
+    height: 15%;
 }
 
 .DiceGame .InfoPanel .buttonSet2 .lowerButton {
@@ -277,16 +296,16 @@ body {
 }
 
 .DiceGame .InfoPanel .product {
-    height: 50%;
+    height: 40%;
 }
 
 .DiceGame .InfoPanel .product h2 {
     margin: 0 auto;
     text-align: center;
-    height: 30%;
+    height: 25%;
 }
 
 .DiceGame .InfoPanel .product img {
     width: 100%;
-    height: 60%;
+    height: 65%;
 }
