@@ -1,11 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { IdleDiceContainer } from './IdleDiceContainer';
 
 export class DiceBoard extends React.Component {
     render() {
         return (
             <div className="DiceBoard">
                 <div className="idleDice">
-                    Idle Dice
+                    <IdleDiceContainer idleDice={this.props.idleDice}/>
+                </div>
+                <div className="middleField">
+                    Middle Field
                 </div>
                 <div className="diceResult">
                     Dice Result
@@ -14,3 +19,7 @@ export class DiceBoard extends React.Component {
         );
     }
 }
+
+DiceBoard.propTypes = {
+    idleDice: PropTypes.array.isRequired
+};

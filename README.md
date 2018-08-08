@@ -7,7 +7,6 @@ After cloning, do `npm install`, then `./runserver.sh`.
 ## Notes
 
 ## TODO
-Main Functions
 - display message at game end (win or lose)
 - logic refactoring and possible improvements (especially in NumberDisplayBoard, also in InfoPanel)
 - dice rolling - visuals and sound

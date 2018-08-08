@@ -19,6 +19,7 @@ class GameEngine {
     - isDone: boolean, indicates if the game is "done", the interim between the last guess and the reveal phase
     - isRevealPhase: boolean, indicates if all rolls / guesses are complete
     - isGameWon: boolean, indicates if the user won the game
+    - idleDiceFaces: array of 4 integers from 1 to 6. Represents the idle dice faces that will be displayed in the DiceBoard
     */
     constructor() {
         // Prices based on the following sites: thecarconnection.com
@@ -42,6 +43,7 @@ class GameEngine {
         this.isDone = false;
         this.isRevealPhase = false;
         this.isGameWon = false;
+        this.idleDiceFaces = [];
     }
 
     /*
@@ -58,6 +60,11 @@ class GameEngine {
         this.isDone = false;
         this.isRevealPhase = false;
         this.isGameWon = false;
+
+        this.idleDiceFaces = [];
+        for (let i = 0; i < 4; i++) {
+            this.idleDiceFaces.push(Math.floor((Math.random() * 6) + 1));
+        }
         return this;
     }
 
@@ -250,14 +257,18 @@ export class DiceGame extends React.Component {
             isRevealPhase: this.state.game.isRevealPhase
         };
 
+        // The Idle Dice faces to display
+        let idleDice = Array.from(this.state.game.idleDiceFaces);
+        idleDice = idleDice.splice(0, 4 - this.state.game.rolls.length);
+
         return (
             <div className="DiceGame">
                 <div className="left">
                     <div className="banner">
-                        <img src="/app/assets/img/dicegame/dicegame.png" height="95%" width="100%"/>
+                        <img src="/app/assets/img/dicegame/dicegame.png"/>
                     </div>
                     <NumberDisplayBoard gameData={gameData} lifecycle={lifecycle}/>
-                    <DiceBoard/>
+                    <DiceBoard idleDice={idleDice}/>
                 </div>
                 <div className="right">
                     <InfoPanel handlers={handlers} product={this.state.game.product} lifecycle={lifecycle}/>
