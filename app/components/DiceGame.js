@@ -26,7 +26,14 @@ class GameEngine {
         this.allProducts = [
             {name: "2016 Acura ILX", cost: "21252", imgPath: "/app/assets/img/dicegame/2016_acura_ilx.jpg"},
             {name: "2009 Audi Q7 Prestige", cost: "16432", imgPath: "/app/assets/img/dicegame/2009_audi_q7_prestige.jpg"},
-            {name: "2017 Hyundai Elantra SE", cost: "13644", imgPath: "/app/assets/img/dicegame/2017_hyundai_elantra_se.jpg"}
+            {name: "2017 Hyundai Elantra SE", cost: "13644", imgPath: "/app/assets/img/dicegame/2017_hyundai_elantra_se.jpg"},
+            {name: "2014 Dodge Durango", cost: "21641", imgPath: "/app/assets/img/dicegame/2014_dodge_durango.jpg"},
+            {name: "2016 Jaguar XF Prestige", cost: "21641", imgPath: "/app/assets/img/dicegame/2016_jaguar_xf_prestige.jpg"},
+            {name: "2011 Toyota Avalon", cost: "16144", imgPath: "/app/assets/img/dicegame/2011_toyota_avalon.jpg"},
+            {name: "2013 Lincoln MKS", cost: "14622", imgPath: "/app/assets/img/dicegame/2013_lincoln_mks.jpg"},
+            {name: "2017 Infiniti QX60", cost: "36513", imgPath: "/app/assets/img/dicegame/2017_infiniti_qx60.jpg"},
+            {name: "2016 Chevrolet Malibu", cost: "13634", imgPath: "/app/assets/img/dicegame/2016_chevrolet_malibu.jpg"},
+            {name: "2018 Ford Mustang Ecoboost", cost: "21641", imgPath: "/app/assets/img/dicegame/2018_ford_mustang_ecoboost.jpg"}
         ];
 
         this.product = {
