@@ -52,5 +52,6 @@ export class NumberPanel extends React.Component {
 
 NumberPanel.propTypes = {
     number: PropTypes.number,
-    panelMode: PropTypes.number
+    isFilled: PropTypes.bool.isRequired,
+    isSelected: PropTypes.bool.isRequired
 };

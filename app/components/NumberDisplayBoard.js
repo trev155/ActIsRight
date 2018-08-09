@@ -3,7 +3,50 @@ import PropTypes from 'prop-types';
 import { NumberPanel } from './NumberPanel';
 import { DicePanel } from './DicePanel';
 
+/*
+A helper class that holds data for a single NumberPanel.
+It holds data on:
+- the number to be displayed
+- whether the number should be displayed
+- whether the panel should be selected
+*/
+class DisplayPanelData {
+    constructor() {
+        this._isFilled = false;
+        this._isSelected = false;
+    }
+
+    get number() {
+        return this._number;
+    }
+
+    get isFilled() {
+        return this._isFilled;
+    }
+
+    get isSelected() {
+        return this._isSelected
+    }
+
+    set number(num) {
+        this._number = num;
+    }
+
+    set isFilled(val) {
+        this._isFilled = val;
+    }
+
+    set isSelected(val) {
+        this._isSelected = val;
+    }
+}
+
+
 export class NumberDisplayBoard extends React.Component {
+    setData() {
+
+    }
+
     /*
     Render the NumberDisplayBoard.
 
@@ -19,171 +62,146 @@ export class NumberDisplayBoard extends React.Component {
     - the values in the rolls array, the dice roll values
     */
     render() {
-        // Left most digit should always be displayed, unless the game has not started yet
-        let firstDigit;
-        let firstDigitIsFilled;
-        let firstDigitIsSelected;
+        let firstDigit = new DisplayPanelData();
+        let secondDigitHigher = new DisplayPanelData();
+        let secondDigitLower = new DisplayPanelData();
+        let thirdDigitHigher = new DisplayPanelData();
+        let thirdDigitLower = new DisplayPanelData();
+        let fourthDigitHigher = new DisplayPanelData();
+        let fourthDigitLower = new DisplayPanelData();
+        let fifthDigitHigher = new DisplayPanelData();
+        let fifthDigitLower = new DisplayPanelData();
+
         if (this.props.lifecycle.isStarted) {
-            firstDigit = parseInt(this.props.gameData.cost[0]);
-            firstDigitIsFilled = true;
-            firstDigitIsSelected = true;
+            firstDigit.number = parseInt(this.props.gameData.cost[0]);
+            firstDigit.isFilled = true;
+            firstDigit.isSelected = true;
         } else {
-            firstDigit = null;
-            firstDigitIsFilled = false;
-            firstDigitIsSelected = false;
+            firstDigit.isFilled = false;
+            firstDigit.isSelected = false;
         }
-
-        // The rest of the digits
-        let secondDigitHigher;
-        let secondDigitLower;
-        let thirdDigitHigher;
-        let thirdDigitLower;
-        let fourthDigitHigher;
-        let fourthDigitLower;
-        let fifthDigitHigher;
-        let fifthDigitLower;
-
-        let secondDigitHigherIsFilled;
-        let secondDigitLowerIsFilled;
-        let secondDigitHigherIsSelected;
-        let secondDigitLowerIsSelected;
-
-        let thirdDigitHigherIsFilled;
-        let thirdDigitLowerIsFilled;
-        let thirdDigitHigherIsSelected;
-        let thirdDigitLowerIsSelected;
-
-        let fourthDigitHigherIsFilled;
-        let fourthDigitLowerIsFilled;
-        let fourthDigitHigherIsSelected;
-        let fourthDigitLowerIsSelected;
-
-        let fifthDigitHigherIsFilled;
-        let fifthDigitLowerIsFilled;
-        let fifthDigitHigherIsSelected;
-        let fifthDigitLowerIsSelected;
 
         if (this.props.lifecycle.isStarted) {
             if (this.props.gameData.guesses[0] === 1) {
-                secondDigitHigherIsFilled = false;
-                secondDigitHigherIsSelected = true;
+                secondDigitHigher.isFilled = false;
+                secondDigitHigher.isSelected = true;
             } else if (this.props.gameData.guesses[0] === -1) {
-                secondDigitLowerIsFilled = false;
-                secondDigitLowerIsSelected = true;
+                secondDigitLower.isFilled = false;
+                secondDigitLower.isSelected = true;
             } else if (this.props.gameData.guesses[0] === 0) {
-                secondDigitHigher = parseInt(this.props.gameData.cost[1]);
-                secondDigitLower = parseInt(this.props.gameData.cost[1]);
-                secondDigitHigherIsFilled = true;
-                secondDigitHigherIsSelected = true;
-                secondDigitLowerIsFilled = true;
-                secondDigitLowerIsSelected = true;
+                secondDigitHigher.number = parseInt(this.props.gameData.cost[1]);
+                secondDigitLower.number = parseInt(this.props.gameData.cost[1]);
+                secondDigitHigher.isFilled = true;
+                secondDigitHigher.isSelected = true;
+                secondDigitLower.isFilled = true;
+                secondDigitLower.isSelected = true;
             }
 
             if (this.props.gameData.guesses[1] === 1) {
-                thirdDigitHigherIsFilled = false;
-                thirdDigitHigherIsSelected = true;
+                thirdDigitHigher.isFilled = false;
+                thirdDigitHigher.isSelected = true;
             } else if (this.props.gameData.guesses[1] === -1) {
-                thirdDigitLowerIsFilled = false;
-                thirdDigitLowerIsSelected = true;
+                thirdDigitLower.isFilled = false;
+                thirdDigitLower.isSelected = true;
             } else if (this.props.gameData.guesses[1] === 0) {
-                thirdDigitHigher = parseInt(this.props.gameData.cost[2]);
-                thirdDigitLower = parseInt(this.props.gameData.cost[2]);
-                thirdDigitHigherIsFilled = true;
-                thirdDigitHigherIsSelected = true;
-                thirdDigitLowerIsFilled = true;
-                thirdDigitLowerIsSelected = true;
+                thirdDigitHigher.number = parseInt(this.props.gameData.cost[2]);
+                thirdDigitLower.number = parseInt(this.props.gameData.cost[2]);
+                thirdDigitHigher.isFilled = true;
+                thirdDigitHigher.isSelected = true;
+                thirdDigitLower.isFilled = true;
+                thirdDigitLower.sSelected = true;
             }
 
             if (this.props.gameData.guesses[2] === 1) {
-                fourthDigitHigherIsFilled = false;
-                fourthDigitHigherIsSelected = true;
+                fourthDigitHigher.isFilled = false;
+                fourthDigitHigher.isSelected = true;
             } else if (this.props.gameData.guesses[2] === -1) {
-                fourthDigitLowerIsFilled = false;
-                fourthDigitLowerIsSelected = true;
+                fourthDigitLower.isFilled = false;
+                fourthDigitLower.isSelected = true;
             } else if (this.props.gameData.guesses[2] === 0) {
-                fourthDigitHigher = parseInt(this.props.gameData.cost[3]);
-                fourthDigitLower = parseInt(this.props.gameData.cost[3]);
-                fourthDigitHigherIsFilled = true;
-                fourthDigitHigherIsSelected = true;
-                fourthDigitLowerIsFilled = true;
-                fourthDigitLowerIsSelected = true;
+                fourthDigitHigher.number = parseInt(this.props.gameData.cost[3]);
+                fourthDigitLower.number = parseInt(this.props.gameData.cost[3]);
+                fourthDigitHigher.isFilled = true;
+                fourthDigitHigher.isSelected = true;
+                fourthDigitLower.isFilled = true;
+                fourthDigitLower.isSelected = true;
             }
 
             if (this.props.gameData.guesses[3] === 1) {
-                fifthDigitHigherIsFilled = false;
-                fifthDigitHigherIsSelected = true;
+                fifthDigitHigher.isFilled = false;
+                fifthDigitHigher.isSelected = true;
             } else if (this.props.gameData.guesses[3] === -1) {
-                fifthDigitLowerIsFilled = false;
-                fifthDigitLowerIsSelected = true;
+                fifthDigitLower.isFilled = false;
+                fifthDigitLower.isSelected = true;
             } else if (this.props.gameData.guesses[3] === 0) {
-                fifthDigitHigher = parseInt(this.props.gameData.cost[4]);
-                fifthDigitLower = parseInt(this.props.gameData.cost[4]);
-                fifthDigitHigherIsFilled = true;
-                fifthDigitHigherIsSelected = true;
-                fifthDigitLowerIsFilled = true;
-                fifthDigitLowerIsSelected = true;
+                fifthDigitHigher.number = parseInt(this.props.gameData.cost[4]);
+                fifthDigitLower.number = parseInt(this.props.gameData.cost[4]);
+                fifthDigitHigher.isFilled = true;
+                fifthDigitHigher.isSelected = true;
+                fifthDigitLower.isFilled = true;
+                fifthDigitLower.isSelected = true;
             }
         }
 
         // If we're in the reveal phase, override some of the above.
         if (this.props.lifecycle.isRevealPhase) {
             if (this.props.gameData.rolls[0] < parseInt(this.props.gameData.cost[1])) {
-                secondDigitHigher = parseInt(this.props.gameData.cost[1]);
-                secondDigitHigherIsFilled = true;
+                secondDigitHigher.number = parseInt(this.props.gameData.cost[1]);
+                secondDigitHigher.isFilled = true;
             } else if (this.props.gameData.rolls[0] > parseInt(this.props.gameData.cost[1])) {
-                secondDigitLower = parseInt(this.props.gameData.cost[1]);
-                secondDigitLowerIsFilled = true;
+                secondDigitLower.number = parseInt(this.props.gameData.cost[1]);
+                secondDigitLower.isFilled = true;
             }
 
             if (this.props.gameData.rolls[1] < parseInt(this.props.gameData.cost[2])) {
-                thirdDigitHigher = parseInt(this.props.gameData.cost[2]);
-                thirdDigitHigherIsFilled = true;
+                thirdDigitHigher.number = parseInt(this.props.gameData.cost[2]);
+                thirdDigitHigher.isFilled = true;
             } else if (this.props.gameData.rolls[1] > parseInt(this.props.gameData.cost[2])) {
-                thirdDigitLower = parseInt(this.props.gameData.cost[2]);
-                thirdDigitLowerIsFilled = true;
+                thirdDigitLower.number = parseInt(this.props.gameData.cost[2]);
+                thirdDigitLower.isFilled = true;
             }
 
             if (this.props.gameData.rolls[2] < parseInt(this.props.gameData.cost[3])) {
-                fourthDigitHigher = parseInt(this.props.gameData.cost[3]);
-                fourthDigitHigherIsFilled = true;
+                fourthDigitHigher.number = parseInt(this.props.gameData.cost[3]);
+                fourthDigitHigher.isFilled = true;
             } else if (this.props.gameData.rolls[2] > parseInt(this.props.gameData.cost[3])) {
-                fourthDigitLower = parseInt(this.props.gameData.cost[3]);
-                fourthDigitLowerIsFilled = true;
+                fourthDigitLower.number = parseInt(this.props.gameData.cost[3]);
+                fourthDigitLower.isFilled = true;
             }
 
             if (this.props.gameData.rolls[3] < parseInt(this.props.gameData.cost[4])) {
-                fifthDigitHigher = parseInt(this.props.gameData.cost[4]);
-                fifthDigitHigherIsFilled = true;
+                fifthDigitHigher.number = parseInt(this.props.gameData.cost[4]);
+                fifthDigitHigher.isFilled = true;
             } else if (this.props.gameData.rolls[3] > parseInt(this.props.gameData.cost[4])) {
-                fifthDigitLower = parseInt(this.props.gameData.cost[4]);
-                fifthDigitLowerIsFilled = true;
+                fifthDigitLower.number = parseInt(this.props.gameData.cost[4]);
+                fifthDigitLower.isFilled = true;
             }
         }
 
         return (
             <div className="NumberDisplayBoard">
                 <div className="col col1">
-                    <NumberPanel number={firstDigit} isFilled={firstDigitIsFilled} isSelected={firstDigitIsSelected}/>
+                    <NumberPanel number={firstDigit.number} isFilled={firstDigit.isFilled} isSelected={firstDigit.isSelected}/>
                 </div>
                 <div className="col col2">
-                    <NumberPanel number={secondDigitHigher} isFilled={secondDigitHigherIsFilled} isSelected={secondDigitHigherIsSelected}/>
+                    <NumberPanel number={secondDigitHigher.number} isFilled={secondDigitHigher.isFilled} isSelected={secondDigitHigher.isSelected}/>
                     <DicePanel number={this.props.gameData.rolls[0]}/>
-                    <NumberPanel number={secondDigitLower} isFilled={secondDigitLowerIsFilled} isSelected={secondDigitLowerIsSelected}/>
+                    <NumberPanel number={secondDigitLower.number} isFilled={secondDigitLower.isFilled} isSelected={secondDigitLower.isSelected}/>
                 </div>
                 <div className="col col3">
-                    <NumberPanel number={thirdDigitHigher} isFilled={thirdDigitHigherIsFilled} isSelected={thirdDigitHigherIsSelected}/>
+                    <NumberPanel number={thirdDigitHigher.number} isFilled={thirdDigitHigher.isFilled} isSelected={thirdDigitHigher.isSelected}/>
                     <DicePanel number={this.props.gameData.rolls[1]}/>
-                    <NumberPanel number={thirdDigitLower} isFilled={thirdDigitLowerIsFilled} isSelected={thirdDigitLowerIsSelected}/>
+                    <NumberPanel number={thirdDigitLower.number} isFilled={thirdDigitLower.isFilled} isSelected={thirdDigitLower.isSelected}/>
                 </div>
                 <div className="col col4">
-                    <NumberPanel number={fourthDigitHigher} isFilled={fourthDigitHigherIsFilled} isSelected={fourthDigitHigherIsSelected}/>
+                    <NumberPanel number={fourthDigitHigher.number} isFilled={fourthDigitHigher.isFilled} isSelected={fourthDigitHigher.isSelected}/>
                     <DicePanel number={this.props.gameData.rolls[2]}/>
-                    <NumberPanel number={fourthDigitLower} isFilled={fourthDigitLowerIsFilled} isSelected={fourthDigitLowerIsSelected}/>
+                    <NumberPanel number={fourthDigitLower.number} isFilled={fourthDigitLower.isFilled} isSelected={fourthDigitLower.isSelected}/>
                 </div>
                 <div className="col col5">
-                    <NumberPanel number={fifthDigitHigher} isFilled={fifthDigitHigherIsFilled} isSelected={fifthDigitHigherIsSelected}/>
+                    <NumberPanel number={fifthDigitHigher.number} isFilled={fifthDigitHigher.isFilled} isSelected={fifthDigitHigher.isSelected}/>
                     <DicePanel number={this.props.gameData.rolls[3]}/>
-                    <NumberPanel number={fifthDigitLower} isFilled={fifthDigitLowerIsFilled} isSelected={fifthDigitLowerIsSelected}/>
+                    <NumberPanel number={fifthDigitLower.number} isFilled={fifthDigitLower.isFilled} isSelected={fifthDigitLower.isSelected}/>
                 </div>
             </div>
         );
