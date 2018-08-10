@@ -1,0 +1,50 @@
+/* --- BODY --- */
+body {
+    margin: 0;
+}
+
+.App {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* --- HEADER --- */
+/* Sticky Header */
+.Header {
+    border: 1px solid black;
+    background-color: rgb(250, 120, 83);
+    text-align: center;
+}
+
+.Header h1 {
+    margin: 0;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.sticky + .MainContent {
+    padding-top: 40px;
+}
+
+/* --- GAME SECTION --- */
+.GameSelection {
+    margin: 10px 0 0 0;
+    padding: 15px;
+    height: 100px;
+}
+
+.GameSection {
+    margin: 10px 0 0 0;
+    border: 10px solid orange;
+    padding: 5px;
+    height: 800px;
+    background-color: rgba(10, 55, 19, 0.3);     /* Default Background Color */
+}

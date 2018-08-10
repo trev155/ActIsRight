@@ -1,6 +1,6 @@
 import React from 'react';
 import { GameSelection } from './GameSelection';
-import { DiceGame } from './DiceGame';
+import { DiceGame } from './DiceGame/DiceGame';
 
 export class MainContent extends React.Component {
     render() {
