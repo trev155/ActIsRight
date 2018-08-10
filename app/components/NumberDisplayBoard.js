@@ -9,15 +9,21 @@ It holds data on:
 - the number to be displayed
 - whether the number should be displayed
 - whether the panel should be selected
+- if the panel is "higher" or "lower", or "neither"
 */
 class DisplayPanelData {
-    constructor() {
+    constructor(position) {
+        this._position = position;
         this._isFilled = false;
         this._isSelected = false;
     }
 
     get number() {
         return this._number;
+    }
+
+    get position() {
+        return this._position;
     }
 
     get isFilled() {
@@ -30,6 +36,10 @@ class DisplayPanelData {
 
     set number(num) {
         this._number = num;
+    }
+
+    set position(val) {
+        this._position = val;
     }
 
     set isFilled(val) {
@@ -47,13 +57,11 @@ export class NumberDisplayBoard extends React.Component {
     Helper function for setting the data of a NumberPanel (during rolls and guesses).
 
     panelData: a DisplayPanelData object
-    position: higher or lower panel (true or false)
     actual: actual digit for this position, integer
     guess: user guess for this position, integer
     */
-    setData(panelData, position, actual, guess) {
-        // Higher panel
-        if (position === true) {
+    setData(panelData, actual, guess) {
+        if (panelData.position === "higher") {
             if (guess === 1) {
                 panelData.isFilled = false;
                 panelData.isSelected = true;
@@ -64,8 +72,7 @@ export class NumberDisplayBoard extends React.Component {
             }
         }
 
-        // Lower panel
-        if (position === false) {
+        if (panelData.position === "lower") {
             if (guess === -1) {
                 panelData.isFilled = false;
                 panelData.isSelected = true;
@@ -83,21 +90,18 @@ export class NumberDisplayBoard extends React.Component {
     Helper function for setting the data of a NumberPanel (in the reveal phase).
 
     panelData: a DisplayPanelData object
-    position: higher or lower panel (true or false)
     roll: the roll value for this digit, integer
     actual: the actual value for this digit, integer
     */
-    setDataReveal(panelData, position, roll, actual) {
-        // Higher panel
-        if (position === true) {
+    setDataReveal(panelData, roll, actual) {
+        if (panelData.position === "higher") {
             if (roll < actual) {
                 panelData.number = actual;
                 panelData.isFilled = true;
             }
         }
 
-        // Lower panel
-        if (position === false) {
+        if (panelData.position === "lower") {
             if (roll > actual) {
                 panelData.number = actual;
                 panelData.isFilled = true;
@@ -117,15 +121,15 @@ export class NumberDisplayBoard extends React.Component {
     */
     render() {
         // Control NumberPanels depending on the game state
-        let firstDigit = new DisplayPanelData();
-        let secondDigitHigher = new DisplayPanelData();
-        let secondDigitLower = new DisplayPanelData();
-        let thirdDigitHigher = new DisplayPanelData();
-        let thirdDigitLower = new DisplayPanelData();
-        let fourthDigitHigher = new DisplayPanelData();
-        let fourthDigitLower = new DisplayPanelData();
-        let fifthDigitHigher = new DisplayPanelData();
-        let fifthDigitLower = new DisplayPanelData();
+        let firstDigit = new DisplayPanelData("neither");
+        let secondDigitHigher = new DisplayPanelData("higher");
+        let secondDigitLower = new DisplayPanelData("lower");
+        let thirdDigitHigher = new DisplayPanelData("higher");
+        let thirdDigitLower = new DisplayPanelData("lower");
+        let fourthDigitHigher = new DisplayPanelData("higher");
+        let fourthDigitLower = new DisplayPanelData("lower");
+        let fifthDigitHigher = new DisplayPanelData("higher");
+        let fifthDigitLower = new DisplayPanelData("lower");
 
         if (this.props.lifecycle.isStarted) {
             firstDigit.number = parseInt(this.props.gameData.cost[0]);
@@ -137,25 +141,25 @@ export class NumberDisplayBoard extends React.Component {
         }
 
         if (this.props.lifecycle.isStarted) {
-            secondDigitHigher = this.setData(secondDigitHigher, true, parseInt(this.props.gameData.cost[1]), this.props.gameData.guesses[0]);
-            secondDigitLower = this.setData(secondDigitLower, false, parseInt(this.props.gameData.cost[1]), this.props.gameData.guesses[0]);
-            thirdDigitHigher = this.setData(thirdDigitHigher, true, parseInt(this.props.gameData.cost[2]), this.props.gameData.guesses[1]);
-            thirdDigitLower = this.setData(thirdDigitLower, false, parseInt(this.props.gameData.cost[2]), this.props.gameData.guesses[1]);
-            fourthDigitHigher = this.setData(fourthDigitHigher, true, parseInt(this.props.gameData.cost[3]), this.props.gameData.guesses[2]);
-            fourthDigitLower = this.setData(fourthDigitLower, false, parseInt(this.props.gameData.cost[3]), this.props.gameData.guesses[2]);
-            fifthDigitHigher = this.setData(fifthDigitHigher, true, parseInt(this.props.gameData.cost[4]), this.props.gameData.guesses[3]);
-            fifthDigitLower = this.setData(fifthDigitLower, false, parseInt(this.props.gameData.cost[4]), this.props.gameData.guesses[3]);
+            secondDigitHigher = this.setData(secondDigitHigher, parseInt(this.props.gameData.cost[1]), this.props.gameData.guesses[0]);
+            secondDigitLower = this.setData(secondDigitLower, parseInt(this.props.gameData.cost[1]), this.props.gameData.guesses[0]);
+            thirdDigitHigher = this.setData(thirdDigitHigher, parseInt(this.props.gameData.cost[2]), this.props.gameData.guesses[1]);
+            thirdDigitLower = this.setData(thirdDigitLower, parseInt(this.props.gameData.cost[2]), this.props.gameData.guesses[1]);
+            fourthDigitHigher = this.setData(fourthDigitHigher, parseInt(this.props.gameData.cost[3]), this.props.gameData.guesses[2]);
+            fourthDigitLower = this.setData(fourthDigitLower, parseInt(this.props.gameData.cost[3]), this.props.gameData.guesses[2]);
+            fifthDigitHigher = this.setData(fifthDigitHigher, parseInt(this.props.gameData.cost[4]), this.props.gameData.guesses[3]);
+            fifthDigitLower = this.setData(fifthDigitLower, parseInt(this.props.gameData.cost[4]), this.props.gameData.guesses[3]);
         }
 
         if (this.props.lifecycle.isRevealPhase) {
-            secondDigitHigher = this.setDataReveal(secondDigitHigher, true, this.props.gameData.rolls[0], this.props.gameData.cost[1]);
-            secondDigitLower = this.setDataReveal(secondDigitLower, false, this.props.gameData.rolls[0], this.props.gameData.cost[1]);
-            thirdDigitHigher = this.setDataReveal(thirdDigitHigher, true, this.props.gameData.rolls[1], this.props.gameData.cost[2]);
-            thirdDigitLower = this.setDataReveal(thirdDigitLower, false, this.props.gameData.rolls[1], this.props.gameData.cost[2]);
-            fourthDigitHigher = this.setDataReveal(fourthDigitHigher, true, this.props.gameData.rolls[2], this.props.gameData.cost[3]);
-            fourthDigitLower = this.setDataReveal(fourthDigitLower, false, this.props.gameData.rolls[2], this.props.gameData.cost[3]);
-            fifthDigitHigher = this.setDataReveal(fifthDigitHigher, true, this.props.gameData.rolls[3], this.props.gameData.cost[4]);
-            fifthDigitLower = this.setDataReveal(fifthDigitLower, false, this.props.gameData.rolls[3], this.props.gameData.cost[4]);
+            secondDigitHigher = this.setDataReveal(secondDigitHigher, this.props.gameData.rolls[0], this.props.gameData.cost[1]);
+            secondDigitLower = this.setDataReveal(secondDigitLower, this.props.gameData.rolls[0], this.props.gameData.cost[1]);
+            thirdDigitHigher = this.setDataReveal(thirdDigitHigher, this.props.gameData.rolls[1], this.props.gameData.cost[2]);
+            thirdDigitLower = this.setDataReveal(thirdDigitLower, this.props.gameData.rolls[1], this.props.gameData.cost[2]);
+            fourthDigitHigher = this.setDataReveal(fourthDigitHigher, this.props.gameData.rolls[2], this.props.gameData.cost[3]);
+            fourthDigitLower = this.setDataReveal(fourthDigitLower, this.props.gameData.rolls[2], this.props.gameData.cost[3]);
+            fifthDigitHigher = this.setDataReveal(fifthDigitHigher, this.props.gameData.rolls[3], this.props.gameData.cost[4]);
+            fifthDigitLower = this.setDataReveal(fifthDigitLower, this.props.gameData.rolls[3], this.props.gameData.cost[4]);
         }
 
         return (
